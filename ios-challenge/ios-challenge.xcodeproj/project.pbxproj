@@ -15,6 +15,7 @@
 		60F0496B252BDA00008A3188 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 60F04969252BDA00008A3188 /* LaunchScreen.storyboard */; };
 		60F04976252BDA00008A3188 /* ios_challengeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F04975252BDA00008A3188 /* ios_challengeTests.swift */; };
 		60F04981252BDA00008A3188 /* ios_challengeUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F04980252BDA00008A3188 /* ios_challengeUITests.swift */; };
+		60F04993252BDADF008A3188 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F04992252BDADF008A3188 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		60F0497C252BDA00008A3188 /* ios-challengeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "ios-challengeUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F04980252BDA00008A3188 /* ios_challengeUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ios_challengeUITests.swift; sourceTree = "<group>"; };
 		60F04982252BDA00008A3188 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		60F04992252BDADF008A3188 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 		60F0495D252BD9FE008A3188 /* ios-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				60F04991252BDAD2008A3188 /* Model */,
 				60F0495E252BD9FE008A3188 /* AppDelegate.swift */,
 				60F04960252BD9FE008A3188 /* SceneDelegate.swift */,
 				60F04962252BD9FE008A3188 /* ViewController.swift */,
@@ -126,6 +129,14 @@
 				60F04982252BDA00008A3188 /* Info.plist */,
 			);
 			path = "ios-challengeUITests";
+			sourceTree = "<group>";
+		};
+		60F04991252BDAD2008A3188 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				60F04992252BDADF008A3188 /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 				60F04963252BD9FE008A3188 /* ViewController.swift in Sources */,
 				60F0495F252BD9FE008A3188 /* AppDelegate.swift in Sources */,
 				60F04961252BD9FE008A3188 /* SceneDelegate.swift in Sources */,
+				60F04993252BDADF008A3188 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
