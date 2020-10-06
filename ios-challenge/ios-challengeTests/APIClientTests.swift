@@ -11,26 +11,28 @@ import XCTest
 class APIClientTests: XCTestCase {
 
     private var apiClient: URLSessionAPIClient!
-    private var session = SessionMock()
+    private let session = SessionMock()
+    private let mapper = PostMapperMock()
   
-    let fakeURL = URL(string: "http://fake.url.com")!
-    let data = Data()
-    let missingDataError = APIClientError.missingData
-    let unknownError = APIClientError.unknown
-    
+    private let fakeURL = URL(string: "http://fake.url.com")!
+    private let post = PostMother().get()
+    private let missingDataError = APIClientError.missingData
+    private let unknownError = APIClientError.unknown
+        
     
     override func setUp() {
-        apiClient = URLSessionAPIClient(session: session)
+        apiClient = URLSessionAPIClient(session: session, mapper: mapper)
     }
     
-    func test_whenSessionHasDataAndNoError_ThenDataIsRetrieved() {
-        session.data = data
+    func test_whenSessionHasDataAndNoError_ThenThePostsAreRetrieved() {
+        session.data = Data()
+        mapper.post = post
         
         apiClient.performGETRequest(url: fakeURL, completion: { (result) in
             
             switch result {
-            case .success (let data):
-                XCTAssertEqual(data, self.data)
+            case .success (let posts):
+                XCTAssertEqual(posts, [self.post])
             default:
                 break
             }
@@ -52,7 +54,7 @@ class APIClientTests: XCTestCase {
     
     func test_whenSessionHasDataAndError_ThenAnErrorIsRetrieved() {
         session.error = unknownError
-        session.data = data
+        session.data = Data()
 
         apiClient.performGETRequest(url: fakeURL, completion: { (result) in
             

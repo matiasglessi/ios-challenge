@@ -12,7 +12,7 @@ enum ReadStatus {
     case unread
 }
 
-struct Post {
+struct Post: Equatable {
     let title: String
     let author: String
     let date: Date
@@ -20,3 +20,4 @@ struct Post {
     let comments: Int
     let status: ReadStatus
 }
+    
