@@ -51,21 +51,6 @@ class APIClientTests: XCTestCase {
             }
         })
     }
-    
-    func test_whenSessionHasDataAndError_ThenAnErrorIsRetrieved() {
-        session.error = unknownError
-        session.data = Data()
-
-        apiClient.performGETRequest(url: fakeURL, completion: { (result) in
-            
-            switch result {
-            case .failure(let error):
-                XCTAssertEqual(error as! APIClientError, self.unknownError)
-            default:
-                break
-            }
-        })
-    }
 }
 
 

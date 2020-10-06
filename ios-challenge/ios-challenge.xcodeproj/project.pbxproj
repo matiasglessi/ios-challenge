@@ -10,6 +10,9 @@
 		60D59C00252C91280085BB4E /* PostMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59BFF252C91280085BB4E /* PostMapper.swift */; };
 		60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C04252C91880085BB4E /* PostMapperMock.swift */; };
 		60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C09252C936A0085BB4E /* PostMapperTests.swift */; };
+		60D59C18252CC3220085BB4E /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C17252CC3220085BB4E /* FeedViewModel.swift */; };
+		60D59C20252CC6AA0085BB4E /* FeedViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C1F252CC6AA0085BB4E /* FeedViewModelTests.swift */; };
+		60D59C25252CC8720085BB4E /* APIClientMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C24252CC8720085BB4E /* APIClientMock.swift */; };
 		60F0495F252BD9FE008A3188 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F0495E252BD9FE008A3188 /* AppDelegate.swift */; };
 		60F04961252BD9FE008A3188 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F04960252BD9FE008A3188 /* SceneDelegate.swift */; };
 		60F04963252BD9FE008A3188 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60F04962252BD9FE008A3188 /* ViewController.swift */; };
@@ -47,6 +50,9 @@
 		60D59BFF252C91280085BB4E /* PostMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapper.swift; sourceTree = "<group>"; };
 		60D59C04252C91880085BB4E /* PostMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperMock.swift; sourceTree = "<group>"; };
 		60D59C09252C936A0085BB4E /* PostMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperTests.swift; sourceTree = "<group>"; };
+		60D59C17252CC3220085BB4E /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
+		60D59C1F252CC6AA0085BB4E /* FeedViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModelTests.swift; sourceTree = "<group>"; };
+		60D59C24252CC8720085BB4E /* APIClientMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClientMock.swift; sourceTree = "<group>"; };
 		60F0495B252BD9FE008A3188 /* ios-challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		60F0495E252BD9FE008A3188 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		60F04960252BD9FE008A3188 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -102,6 +108,14 @@
 			path = Mapper;
 			sourceTree = "<group>";
 		};
+		60D59C16252CC2EC0085BB4E /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				60D59C17252CC3220085BB4E /* FeedViewModel.swift */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
 		60F04952252BD9FE008A3188 = {
 			isa = PBXGroup;
 			children = (
@@ -127,6 +141,7 @@
 			children = (
 				60D59BFE252C91190085BB4E /* Mapper */,
 				60F049AB252BDDCB008A3188 /* Networking */,
+				60D59C16252CC2EC0085BB4E /* Presentation */,
 				60F04991252BDAD2008A3188 /* Model */,
 				60F0495E252BD9FE008A3188 /* AppDelegate.swift */,
 				60F04960252BD9FE008A3188 /* SceneDelegate.swift */,
@@ -146,6 +161,7 @@
 				60F04977252BDA00008A3188 /* Info.plist */,
 				60F049B9252BEAF5008A3188 /* APIClientTests.swift */,
 				60D59C09252C936A0085BB4E /* PostMapperTests.swift */,
+				60D59C1F252CC6AA0085BB4E /* FeedViewModelTests.swift */,
 			);
 			path = "ios-challengeTests";
 			sourceTree = "<group>";
@@ -181,6 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				60F049C4252BF8AC008A3188 /* SessionMock.swift */,
+				60D59C24252CC8720085BB4E /* APIClientMock.swift */,
 				60D59C04252C91880085BB4E /* PostMapperMock.swift */,
 				60F049CC252C0676008A3188 /* PostMother.swift */,
 			);
@@ -325,6 +342,7 @@
 				60F049AD252BDE35008A3188 /* APIClient.swift in Sources */,
 				60D59C00252C91280085BB4E /* PostMapper.swift in Sources */,
 				60F04993252BDADF008A3188 /* Post.swift in Sources */,
+				60D59C18252CC3220085BB4E /* FeedViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,6 +354,8 @@
 				60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */,
 				60F049CD252C0676008A3188 /* PostMother.swift in Sources */,
 				60F049BA252BEAF5008A3188 /* APIClientTests.swift in Sources */,
+				60D59C20252CC6AA0085BB4E /* FeedViewModelTests.swift in Sources */,
+				60D59C25252CC8720085BB4E /* APIClientMock.swift in Sources */,
 				60F049C5252BF8AC008A3188 /* SessionMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
