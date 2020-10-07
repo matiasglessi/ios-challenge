@@ -25,10 +25,30 @@ class FeedTableViewCell: UITableViewCell {
         guard let post = post else { return }
         
         self.titleLabel.text = post.title
-        self.authorLabel.text = post.author
+        self.authorLabel.attributedText = getAuthorAndDateText(for: post)
         self.commentsLabel.text = "\(String(describing: post.comments)) comments"
     }
     
+    private func getAuthorAndDateText(for post: Post) -> NSAttributedString {
+        let date = post.getFormattedDate()
+        let author = post.author
+        
+        let message = author + " " + date
+        
+        
+        let authorAndDateAttributedString =
+            NSMutableAttributedString(string: message,
+                                      attributes: [
+                                        .font: UIFont.systemFont(ofSize: 16.0),
+                                        .foregroundColor: UIColor.white
+                                      ])
+        authorAndDateAttributedString.addAttributes([
+                .font: UIFont.systemFont(ofSize: 13.0),
+                .foregroundColor: UIColor.lightGray
+            ], range: NSRange((message.range(of: date)!), in: message))
+        return authorAndDateAttributedString
+        
+    }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

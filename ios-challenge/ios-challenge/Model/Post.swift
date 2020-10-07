@@ -19,5 +19,10 @@ struct Post: Equatable {
     let thumbnail: String
     let comments: Int
     let status: ReadStatus
-}
     
+    func getFormattedDate() -> String {
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: date, relativeTo: Date())
+    }
+}
