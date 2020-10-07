@@ -15,8 +15,11 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
+    var feedCellViewModel: FeedCellViewModel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.feedCellViewModel = FeedCellViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
         self.readIndicatorView.round()
     }
     
@@ -27,6 +30,25 @@ class FeedTableViewCell: UITableViewCell {
         self.titleLabel.text = post.title
         self.authorLabel.attributedText = getAuthorAndDateText(for: post)
         self.commentsLabel.text = "\(String(describing: post.comments)) comments"
+        self.configurePostThumbnail(for: post.thumbnail)
+    }
+    
+    
+    private func configurePostThumbnail(for thumbnail: String) {
+        feedCellViewModel.downloadThumbnail(with: thumbnail) { [weak self] (result) in
+            self?.updateThumbnailWith(result: result)
+        }
+    }
+    
+    private func updateThumbnailWith(result: Result<UIImage>) {
+        DispatchQueue.main.async {
+            switch result {
+            case .success(let image):
+                self.thumbnailImageView.image = image
+            case .failure(_):
+                self.thumbnailImageView.image = UIImage.init(systemName: "x.square.fill")
+            }
+        }
     }
     
     private func getAuthorAndDateText(for post: Post) -> NSAttributedString {

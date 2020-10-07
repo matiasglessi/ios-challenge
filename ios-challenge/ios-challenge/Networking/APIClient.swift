@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 enum APIClientError: Error, Equatable {
     case missingData
@@ -14,6 +15,7 @@ enum APIClientError: Error, Equatable {
 
 protocol APIClient {
     func performGETRequest(url: URL, completion: @escaping (Result<[Post]>) -> Void)
+    func performDownloadRequest(url: URL, completion: @escaping (Result<UIImage>) -> Void)
 }
 
 class URLSessionAPIClient: APIClient {
@@ -27,7 +29,7 @@ class URLSessionAPIClient: APIClient {
     }
     
     func performGETRequest(url: URL, completion: @escaping (Result<[Post]>) -> Void) {
-        session.loadData(from: url) { (data, error) in
+        session.loadData(from: url) { (data, _, error) in
             guard let data = data else {
                 completion(.failure(APIClientError.missingData))
                 return
@@ -55,6 +57,22 @@ class URLSessionAPIClient: APIClient {
                 completion(.failure(error))
             }
         }
+    }
+    
+    
+    func performDownloadRequest(url: URL, completion: @escaping (Result<UIImage>) -> Void) {
+        
+        session.loadData(from: url) { (data, response, error) in
+            guard
+                let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
+                let data = data, error == nil,
+                let image = UIImage(data: data)
+                else { return }
+            
+            print(image)
+            completion(.success(image))
+        }
+        
     }
 }
 

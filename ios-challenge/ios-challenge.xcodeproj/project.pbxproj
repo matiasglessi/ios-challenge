@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		603B3D3C252DF56700F2A7B3 /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D3B252DF56700F2A7B3 /* FeedCellViewModel.swift */; };
 		60D59C00252C91280085BB4E /* PostMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59BFF252C91280085BB4E /* PostMapper.swift */; };
 		60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C04252C91880085BB4E /* PostMapperMock.swift */; };
 		60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C09252C936A0085BB4E /* PostMapperTests.swift */; };
@@ -50,6 +51,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		603B3D3B252DF56700F2A7B3 /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
 		60D59BFF252C91280085BB4E /* PostMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapper.swift; sourceTree = "<group>"; };
 		60D59C04252C91880085BB4E /* PostMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperMock.swift; sourceTree = "<group>"; };
 		60D59C09252C936A0085BB4E /* PostMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperTests.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				60D59C17252CC3220085BB4E /* FeedViewModel.swift */,
+				603B3D3B252DF56700F2A7B3 /* FeedCellViewModel.swift */,
 				60D59C31252CD1ED0085BB4E /* FeedTableViewController.swift */,
 				60D59C36252CDF3C0085BB4E /* FeedTableViewCell.swift */,
 				60D59C37252CDF3C0085BB4E /* FeedTableViewCell.xib */,
@@ -346,6 +349,7 @@
 			files = (
 				60F049BF252BF826008A3188 /* Session.swift in Sources */,
 				60F049B5252BEA49008A3188 /* Result.swift in Sources */,
+				603B3D3C252DF56700F2A7B3 /* FeedCellViewModel.swift in Sources */,
 				60F04963252BD9FE008A3188 /* ViewController.swift in Sources */,
 				60F0495F252BD9FE008A3188 /* AppDelegate.swift in Sources */,
 				60F04961252BD9FE008A3188 /* SceneDelegate.swift in Sources */,
