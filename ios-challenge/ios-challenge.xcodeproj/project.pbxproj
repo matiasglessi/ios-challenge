@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		603B3D3C252DF56700F2A7B3 /* FeedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D3B252DF56700F2A7B3 /* FeedCellViewModel.swift */; };
+		603B3D42252E8AB000F2A7B3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D41252E8AB000F2A7B3 /* ImageCache.swift */; };
+		603B3D4A252E8D0E00F2A7B3 /* ImageCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D49252E8D0E00F2A7B3 /* ImageCacheMock.swift */; };
 		60D59C00252C91280085BB4E /* PostMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59BFF252C91280085BB4E /* PostMapper.swift */; };
 		60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C04252C91880085BB4E /* PostMapperMock.swift */; };
 		60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C09252C936A0085BB4E /* PostMapperTests.swift */; };
@@ -52,6 +54,8 @@
 
 /* Begin PBXFileReference section */
 		603B3D3B252DF56700F2A7B3 /* FeedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModel.swift; sourceTree = "<group>"; };
+		603B3D41252E8AB000F2A7B3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		603B3D49252E8D0E00F2A7B3 /* ImageCacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheMock.swift; sourceTree = "<group>"; };
 		60D59BFF252C91280085BB4E /* PostMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapper.swift; sourceTree = "<group>"; };
 		60D59C04252C91880085BB4E /* PostMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperMock.swift; sourceTree = "<group>"; };
 		60D59C09252C936A0085BB4E /* PostMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperTests.swift; sourceTree = "<group>"; };
@@ -108,6 +112,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		603B3D40252E8A9F00F2A7B3 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				603B3D41252E8AB000F2A7B3 /* ImageCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		60D59BFE252C91190085BB4E /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +163,7 @@
 		60F0495D252BD9FE008A3188 /* ios-challenge */ = {
 			isa = PBXGroup;
 			children = (
+				603B3D40252E8A9F00F2A7B3 /* Cache */,
 				60D59BFE252C91190085BB4E /* Mapper */,
 				60F049AB252BDDCB008A3188 /* Networking */,
 				60D59C16252CC2EC0085BB4E /* Presentation */,
@@ -209,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				60F049C4252BF8AC008A3188 /* SessionMock.swift */,
+				603B3D49252E8D0E00F2A7B3 /* ImageCacheMock.swift */,
 				60D59C24252CC8720085BB4E /* APIClientMock.swift */,
 				60D59C04252C91880085BB4E /* PostMapperMock.swift */,
 				60F049CC252C0676008A3188 /* PostMother.swift */,
@@ -348,6 +362,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				60F049BF252BF826008A3188 /* Session.swift in Sources */,
+				603B3D42252E8AB000F2A7B3 /* ImageCache.swift in Sources */,
 				60F049B5252BEA49008A3188 /* Result.swift in Sources */,
 				603B3D3C252DF56700F2A7B3 /* FeedCellViewModel.swift in Sources */,
 				60F04963252BD9FE008A3188 /* ViewController.swift in Sources */,
@@ -366,6 +381,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603B3D4A252E8D0E00F2A7B3 /* ImageCacheMock.swift in Sources */,
 				60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */,
 				60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */,
 				60F049CD252C0676008A3188 /* PostMother.swift in Sources */,

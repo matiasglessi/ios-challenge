@@ -9,11 +9,12 @@ import Foundation
 @testable import ios_challenge
 
 class SessionMock: Session {
+    
     var data: Data?
+    var response: URLResponse?
     var error: Error?
 
-    func loadData(from url: URL,
-                  completionHandler: @escaping (Data?, Error?) -> Void) {
-        completionHandler(data, error)
+    func loadData(from url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        completionHandler(data, response, error)
     }
 }

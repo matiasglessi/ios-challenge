@@ -17,9 +17,13 @@ class FeedTableViewCell: UITableViewCell {
     
     var feedCellViewModel: FeedCellViewModel!
     
+    private var thumbnailUrl = ""
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.feedCellViewModel = FeedCellViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
+        self.thumbnailImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openThumbnailImage)))
         self.readIndicatorView.round()
     }
     
@@ -35,7 +39,8 @@ class FeedTableViewCell: UITableViewCell {
     
     
     private func configurePostThumbnail(for thumbnail: String) {
-        feedCellViewModel.downloadThumbnail(with: thumbnail) { [weak self] (result) in
+        thumbnailUrl = thumbnail
+        feedCellViewModel.getThumbnail(with: thumbnail) { [weak self] (result) in
             self?.updateThumbnailWith(result: result)
         }
     }
@@ -46,10 +51,17 @@ class FeedTableViewCell: UITableViewCell {
             case .success(let image):
                 self.thumbnailImageView.image = image
             case .failure(_):
-                self.thumbnailImageView.image = UIImage.init(systemName: "x.square.fill")
+                self.thumbnailImageView.image = UIImage(systemName: "x.square.fill")
             }
         }
     }
+    
+    @objc private func openThumbnailImage() {
+        if let url = URL(string: thumbnailUrl) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     
     private func getAuthorAndDateText(for post: Post) -> NSAttributedString {
         let date = post.getFormattedDate()

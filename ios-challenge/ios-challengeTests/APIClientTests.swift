@@ -18,7 +18,7 @@ class APIClientTests: XCTestCase {
     private let post = PostMother().get()
     private let missingDataError = APIClientError.missingData
     private let unknownError = APIClientError.unknown
-        
+    private let image = UIImage(systemName: "x.square.fill")
     
     override func setUp() {
         apiClient = URLSessionAPIClient(session: session, mapper: mapper)
@@ -37,6 +37,19 @@ class APIClientTests: XCTestCase {
                 break
             }
         })
+    }
+    
+    
+    func test_whenSessionHasDataAndNoError_ThenTheImageIsRetrieved() {
+        session.data = image?.pngData()
+        apiClient.performDownloadRequest(url: fakeURL) { (result) in
+            switch result {
+            case .success (let image):
+                XCTAssertEqual(image, self.image)
+            default:
+                break
+            }
+        }
     }
     
     
