@@ -15,26 +15,25 @@ class FeedViewController: UIViewController,
     
     private var feedViewModel: FeedViewModel!
     private let refreshControl = UIRefreshControl()
+    
+    private let apiClient = URLSessionAPIClient(mapper: PostMapper())
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        feedViewModel = FeedViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
+        feedViewModel = FeedViewModel(apiClient: apiClient)
         feedViewModel.delegate = self
         tableView.register(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedTableViewCell")
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshAllPosts), for: .valueChanged)
         refreshControl.tintColor = .orange
+        
+        self.getPosts()
     }
     
     @objc private func refreshAllPosts() {
         self.getPosts()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.getPosts()
-    }
-    
+
     private func getPosts() {
         feedViewModel.getPosts { [weak self] (error) in
             if error == nil {
@@ -77,6 +76,25 @@ class FeedViewController: UIViewController,
         cell.configure(for: post)
         cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "showDetail", sender: indexPath)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showDetail" {
+            
+            if let indexPath = sender as? IndexPath,
+               let post = self.feedViewModel.getPost(at: indexPath.row) {
+                
+                
+                let destination = segue.destination as? UINavigationController
+                let detailViewController = destination?.viewControllers[0] as? DetailViewController
+                detailViewController?.viewModel = DetailViewModel(post: post, apiClient: apiClient)
+            }
+        }
+        
     }
 }
 

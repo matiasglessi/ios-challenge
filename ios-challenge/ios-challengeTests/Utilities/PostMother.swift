@@ -9,17 +9,27 @@ import Foundation
 @testable import ios_challenge
 
 class PostMother {
-    let title: String = ""
-    let author: String = ""
-    let date: Date = Date()
-    let thumbnail: String = ""
-    let comments: Int = 0
-    let fullPictureUrl: String = ""
+    var title: String = ""
+    var author: String = ""
+    var date: Date = Date()
+    var thumbnail: String = ""
+    var comments: Int = 0
+    var fullPictureUrl: String = ""
     var status: ReadStatus = .unread
     
     
     func get() -> Post {
         return Post(title: title, author: author, date: date, thumbnailUrl: thumbnail, comments: comments, fullPictureUrl: fullPictureUrl, status: status)
+    }
+    
+    func withTitle(_ title: String) -> PostMother {
+        self.title = title
+        return self
+    }
+    
+    func withThumbnail(_ thumbnail: String) -> PostMother {
+        self.thumbnail = thumbnail
+        return self
     }
     
     func withReadStatus(_ status: ReadStatus) -> PostMother {

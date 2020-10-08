@@ -8,6 +8,22 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="Jrr-0I-3bM">
+            <objects>
+                <navigationController id="PaY-pU-ryc" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="gih-XF-ylO">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="CAA-6y-UPR" kind="relationship" relationship="rootViewController" id="fao-Tp-FLx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="epF-i3-90g" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="258" y="645"/>
+        </scene>
         <!--Detail View Controller-->
         <scene sceneID="QjA-cZ-F5p">
             <objects>
@@ -16,7 +32,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-yA-ndM">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-yA-ndM">
                                 <rect key="frame" x="10" y="398" width="394" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -41,6 +57,7 @@
                             <constraint firstItem="a28-5t-Wc8" firstAttribute="trailing" secondItem="NDK-yA-ndM" secondAttribute="trailing" constant="10" id="rZ5-cq-uJ6"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="veT-Ex-ksP"/>
                     <connections>
                         <outlet property="postDescriptionLabel" destination="NDK-yA-ndM" id="Got-k7-dtL"/>
                         <outlet property="postImageView" destination="dUa-iq-Ee4" id="6sB-VC-Cip"/>
@@ -48,7 +65,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey5-bk-gpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="258" y="583"/>
+            <point key="canvasLocation" x="1065" y="637"/>
         </scene>
         <!--Reddit Posts-->
         <scene sceneID="s7m-y9-Gmf">
@@ -92,6 +109,7 @@
                     <navigationItem key="navigationItem" title="Reddit Posts" id="BHl-9H-yQG"/>
                     <connections>
                         <outlet property="tableView" destination="56c-cU-ube" id="8zP-ew-JLz"/>
+                        <segue destination="PaY-pU-ryc" kind="showDetail" identifier="showDetail" id="8Q3-P4-pQl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G68-ao-YL1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -127,7 +145,7 @@
                 <splitViewController allowDoubleColumnStyle="YES" id="b3t-i3-BRK" sceneMemberID="viewController">
                     <connections>
                         <segue destination="ZAn-aA-RFx" kind="relationship" relationship="masterViewController" id="iis-wa-Txv"/>
-                        <segue destination="CAA-6y-UPR" kind="relationship" relationship="detailViewController" id="FAT-Dy-yhc"/>
+                        <segue destination="PaY-pU-ryc" kind="relationship" relationship="detailViewController" id="SE1-fd-GXG"/>
                     </connections>
                 </splitViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVY-ql-Uz6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -135,6 +153,9 @@
             <point key="canvasLocation" x="-631" y="229"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="8Q3-P4-pQl"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

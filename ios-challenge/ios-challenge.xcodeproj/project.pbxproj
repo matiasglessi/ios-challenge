@@ -11,6 +11,8 @@
 		603B3D42252E8AB000F2A7B3 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D41252E8AB000F2A7B3 /* ImageCache.swift */; };
 		603B3D4A252E8D0E00F2A7B3 /* ImageCacheMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D49252E8D0E00F2A7B3 /* ImageCacheMock.swift */; };
 		603B3D4F252E8E2E00F2A7B3 /* FeedCellViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603B3D4E252E8E2E00F2A7B3 /* FeedCellViewModelTests.swift */; };
+		603C24E2252F6E3C00119205 /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C24E1252F6E3C00119205 /* DetailViewModel.swift */; };
+		603C24EA252F6E5800119205 /* DetailViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603C24E9252F6E5800119205 /* DetailViewModelTests.swift */; };
 		60D59C00252C91280085BB4E /* PostMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59BFF252C91280085BB4E /* PostMapper.swift */; };
 		60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C04252C91880085BB4E /* PostMapperMock.swift */; };
 		60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60D59C09252C936A0085BB4E /* PostMapperTests.swift */; };
@@ -58,6 +60,8 @@
 		603B3D41252E8AB000F2A7B3 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		603B3D49252E8D0E00F2A7B3 /* ImageCacheMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheMock.swift; sourceTree = "<group>"; };
 		603B3D4E252E8E2E00F2A7B3 /* FeedCellViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCellViewModelTests.swift; sourceTree = "<group>"; };
+		603C24E1252F6E3C00119205 /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
+		603C24E9252F6E5800119205 /* DetailViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModelTests.swift; sourceTree = "<group>"; };
 		60D59BFF252C91280085BB4E /* PostMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapper.swift; sourceTree = "<group>"; };
 		60D59C04252C91880085BB4E /* PostMapperMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperMock.swift; sourceTree = "<group>"; };
 		60D59C09252C936A0085BB4E /* PostMapperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostMapperTests.swift; sourceTree = "<group>"; };
@@ -138,6 +142,8 @@
 				60D59C31252CD1ED0085BB4E /* FeedViewController.swift */,
 				60D59C36252CDF3C0085BB4E /* FeedTableViewCell.swift */,
 				60D59C37252CDF3C0085BB4E /* FeedTableViewCell.xib */,
+				60F04962252BD9FE008A3188 /* DetailViewController.swift */,
+				603C24E1252F6E3C00119205 /* DetailViewModel.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -172,7 +178,6 @@
 				60F04991252BDAD2008A3188 /* Model */,
 				60F0495E252BD9FE008A3188 /* AppDelegate.swift */,
 				60F04960252BD9FE008A3188 /* SceneDelegate.swift */,
-				60F04962252BD9FE008A3188 /* DetailViewController.swift */,
 				60F04964252BD9FE008A3188 /* Main.storyboard */,
 				60F04967252BDA00008A3188 /* Assets.xcassets */,
 				60F04969252BDA00008A3188 /* LaunchScreen.storyboard */,
@@ -190,6 +195,7 @@
 				60D59C09252C936A0085BB4E /* PostMapperTests.swift */,
 				60D59C1F252CC6AA0085BB4E /* FeedViewModelTests.swift */,
 				603B3D4E252E8E2E00F2A7B3 /* FeedCellViewModelTests.swift */,
+				603C24E9252F6E5800119205 /* DetailViewModelTests.swift */,
 			);
 			path = "ios-challengeTests";
 			sourceTree = "<group>";
@@ -373,6 +379,7 @@
 				60F04961252BD9FE008A3188 /* SceneDelegate.swift in Sources */,
 				60F049AD252BDE35008A3188 /* APIClient.swift in Sources */,
 				60D59C00252C91280085BB4E /* PostMapper.swift in Sources */,
+				603C24E2252F6E3C00119205 /* DetailViewModel.swift in Sources */,
 				60D59C32252CD1ED0085BB4E /* FeedViewController.swift in Sources */,
 				60F04993252BDADF008A3188 /* Post.swift in Sources */,
 				60D59C18252CC3220085BB4E /* FeedViewModel.swift in Sources */,
@@ -385,6 +392,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				603B3D4A252E8D0E00F2A7B3 /* ImageCacheMock.swift in Sources */,
+				603C24EA252F6E5800119205 /* DetailViewModelTests.swift in Sources */,
 				603B3D4F252E8E2E00F2A7B3 /* FeedCellViewModelTests.swift in Sources */,
 				60D59C05252C91880085BB4E /* PostMapperMock.swift in Sources */,
 				60D59C0A252C936A0085BB4E /* PostMapperTests.swift in Sources */,
