@@ -14,15 +14,27 @@ class FeedViewController: UIViewController,
     @IBOutlet weak var tableView: UITableView!
     
     private var feedViewModel: FeedViewModel!
+    private let refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         feedViewModel = FeedViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
         tableView.register(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedTableViewCell")
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(refreshAllPosts), for: .valueChanged)
+        refreshControl.tintColor = .orange
+    }
+    
+    @objc private func refreshAllPosts() {
+        self.getPosts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.getPosts()
+    }
+    
+    private func getPosts() {
         feedViewModel.getPosts { [weak self] (error) in
             if error == nil {
                 self?.updateTableView()
@@ -33,6 +45,7 @@ class FeedViewController: UIViewController,
     private func updateTableView() {
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            self.refreshControl.endRefreshing()
         }
     }
     

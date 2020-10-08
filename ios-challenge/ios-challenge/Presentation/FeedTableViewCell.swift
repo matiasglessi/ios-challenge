@@ -16,7 +16,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     private var feedCellViewModel: FeedCellViewModel!
-        
+
     weak var delegate: FeedCellDelegate?
 
     override func awakeFromNib() {
