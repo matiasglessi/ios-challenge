@@ -39,6 +39,13 @@ class DetailViewModel {
                 }
             }
         }
-
+    }
+    
+    func getPostImage(completion: @escaping (UIImage) -> Void) {
+        
+        
+        if let image = cache.getImage(key: post.thumbnailUrl) {
+            completion(image)
+        }
     }
 }

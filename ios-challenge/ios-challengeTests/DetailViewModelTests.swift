@@ -40,5 +40,4 @@ class DetailViewModelTests: XCTestCase {
 
         }
     }
-
 }
