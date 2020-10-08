@@ -15,16 +15,21 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsLabel: UILabel!
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
-    var feedCellViewModel: FeedCellViewModel!
+    private var feedCellViewModel: FeedCellViewModel!
+    private var thumbnailUrl: String = ""
+    private var tapToOpenUrlGesture = UITapGestureRecognizer(target: self, action: #selector(openThumbnailImage))
     
-    private var thumbnailUrl = ""
-    
-    
+        
     override func awakeFromNib() {
         super.awakeFromNib()
         self.feedCellViewModel = FeedCellViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
-        self.thumbnailImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.openThumbnailImage)))
         self.readIndicatorView.round()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.thumbnailUrl = ""
+        self.thumbnailImageView.removeAllGestures()
     }
     
     func configure(for post: Post?) {
@@ -35,6 +40,9 @@ class FeedTableViewCell: UITableViewCell {
         self.authorLabel.attributedText = getAuthorAndDateText(for: post)
         self.commentsLabel.text = "\(String(describing: post.comments)) comments"
         self.configurePostThumbnail(for: post.thumbnail)
+        let tapToOpenUrlGesture = UITapGestureRecognizer(target: self, action: #selector(openThumbnailImage));
+        thumbnailImageView.addGestureRecognizer(tapToOpenUrlGesture)
+        thumbnailImageView.isUserInteractionEnabled = true
     }
     
     
@@ -87,7 +95,6 @@ class FeedTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
 }
 
@@ -95,5 +102,13 @@ private extension UIView {
     func round(){
         self.layer.cornerRadius = self.frame.size.width/2
          self.clipsToBounds = true
+    }
+}
+
+private extension UIView {
+    func removeAllGestures() {
+        gestureRecognizers?.forEach({ (gesture) in
+            removeGestureRecognizer(gesture)
+        })
     }
 }

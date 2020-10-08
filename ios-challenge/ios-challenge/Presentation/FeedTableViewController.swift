@@ -40,12 +40,8 @@ class FeedTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as! FeedTableViewCell
-
-        
         let post = feedViewModel.getPost(at: indexPath.row)
         cell.configure(for: post)
         return cell
     }
-
-    
 }
