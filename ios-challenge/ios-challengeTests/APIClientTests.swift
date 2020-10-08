@@ -31,8 +31,8 @@ class APIClientTests: XCTestCase {
         apiClient.performGETRequest(url: fakeURL, completion: { (result) in
             
             switch result {
-            case .success (let posts):
-                XCTAssertEqual(posts, [self.post])
+            case .success (let postResult):
+                XCTAssertEqual(postResult, PostsResult(posts: [self.post], afterValue: ""))
             default:
                 break
             }

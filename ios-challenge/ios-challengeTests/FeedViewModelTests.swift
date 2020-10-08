@@ -19,7 +19,7 @@ class FeedViewModelTests: XCTestCase {
     }
     
     func test_whenResultIsSuccessWithPosts_thenTheViewModelRetrievesPostCount() {
-        apiClient.result = .success([post])
+        apiClient.result = .success(PostsResult(posts: [post], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             XCTAssert(self?.viewModel?.getPostsCount() == 1)
@@ -27,7 +27,7 @@ class FeedViewModelTests: XCTestCase {
     }
     
     func test_whenResultIsSuccessWithPosts_thenTheViewModelRetrievesPost() {
-        apiClient.result = .success([post])
+        apiClient.result = .success(PostsResult(posts: [post], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             XCTAssertEqual(self?.viewModel?.getPost(at: 0), self?.post)
@@ -43,7 +43,7 @@ class FeedViewModelTests: XCTestCase {
     }
     
     func test_whenIndexIsInvalid_thenTheViewModelReturnNil() {
-        apiClient.result = .success([post])
+        apiClient.result = .success(PostsResult(posts: [post], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             XCTAssertEqual(self?.viewModel?.getPost(at: 1), nil)
@@ -51,7 +51,7 @@ class FeedViewModelTests: XCTestCase {
     }
     
     func test_whenRepositoryIsEmpty_thenTheViewModelReturnNil() {
-        apiClient.result = .success([])
+        apiClient.result = .success(PostsResult(posts: [], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             XCTAssertEqual(self?.viewModel?.getPost(at: 1), nil)
@@ -60,7 +60,7 @@ class FeedViewModelTests: XCTestCase {
     
     
     func test_whenAPostIsRemoveAtIndex_thenThePostIsRemovedFromViewModel(){
-        apiClient.result = .success([post, post])
+        apiClient.result = .success(PostsResult(posts: [post, post], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             self?.viewModel.removePost(at: 0)
@@ -70,7 +70,7 @@ class FeedViewModelTests: XCTestCase {
     }
     
     func test_whenAllPostsAreRemoved_thenThePostsAreRemovedFromViewModel(){
-        apiClient.result = .success([post, post])
+        apiClient.result = .success(PostsResult(posts: [post, post], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             self?.viewModel.removeAllPosts()
@@ -86,7 +86,7 @@ class FeedViewModelTests: XCTestCase {
             .withReadStatus(.unread)
             .get()
 
-        apiClient.result = .success([unreadPost])
+        apiClient.result = .success(PostsResult(posts: [unreadPost], afterValue: ""))
         
         viewModel.getPosts { [weak self] (error) in
             self?.viewModel.markAsRead(at: 0)
@@ -100,11 +100,30 @@ class FeedViewModelTests: XCTestCase {
             .withReadStatus(.read)
             .get()
 
-        apiClient.result = .success([unreadPost])
+        apiClient.result = .success(PostsResult(posts: [unreadPost], afterValue: ""))
         viewModel.getPosts { [weak self] (error) in
             self?.viewModel.markAsRead(at: 0)
             XCTAssertEqual(self?.viewModel.getPost(at: 0)?.status, .read)
         }
     }
+    
+    func test_whenATriggerIndexPostIsRequested_thenTheViewModelRetrievesMorePosts() {
+        
+        let pageSize = 10
+        let offset = 3
+        let currentPage = 1
+        
+        let triggerIndex = pageSize * currentPage - offset
+        
+        apiClient.result = .success(PostsResult(posts: [post, post], afterValue: ""))
+
+        viewModel.getPosts { [weak self] (error) in
+            XCTAssertEqual(self?.viewModel.getPostsCount(), 2)
+            let _ = self?.viewModel.getPostForNewCell(at: triggerIndex)
+            XCTAssertEqual(self?.viewModel.getPostsCount(), 4)
+        }
+
+    }
+
 }
 

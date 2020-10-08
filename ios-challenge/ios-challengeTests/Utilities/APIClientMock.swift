@@ -11,9 +11,9 @@ import UIKit
 
 class APIClientMock: APIClient {
       
-    var result: Result<[Post]>?
+    var result: Result<PostsResult>?
     
-    func performGETRequest(url: URL, completion: @escaping (Result<[Post]>) -> Void) {
+    func performGETRequest(url: URL, completion: @escaping (Result<PostsResult>) -> Void) {
         completion(result!)
     }
     

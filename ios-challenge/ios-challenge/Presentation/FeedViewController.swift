@@ -19,6 +19,7 @@ class FeedViewController: UIViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
         feedViewModel = FeedViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
+        feedViewModel.delegate = self
         tableView.register(UINib(nibName: "FeedTableViewCell", bundle: nil), forCellReuseIdentifier: "FeedTableViewCell")
         tableView.refreshControl = refreshControl
         refreshControl.addTarget(self, action: #selector(refreshAllPosts), for: .valueChanged)
@@ -72,7 +73,7 @@ class FeedViewController: UIViewController,
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as! FeedTableViewCell
-        let post = feedViewModel.getPost(at: indexPath.row)
+        let post = feedViewModel.getPostForNewCell(at: indexPath.row)
         cell.configure(for: post)
         cell.delegate = self
         return cell
@@ -82,8 +83,6 @@ class FeedViewController: UIViewController,
 extension FeedViewController: FeedCellDelegate {
     func dismissPost(in cell: FeedTableViewCell){
         if let indexPath = tableView.indexPath(for: cell) {
-            print("dismissPost in", indexPath.row)
-
             self.feedViewModel.removePost(at: indexPath.row)
             self.deleteRows(at: [indexPath])
         }
@@ -91,7 +90,6 @@ extension FeedViewController: FeedCellDelegate {
 
     func markAsRead(in cell: FeedTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
-            print("markAsRead in", indexPath.row)
             self.feedViewModel.markAsRead(at: indexPath.row)
             self.tableView.reloadRows(at: [indexPath], with: .automatic)
         }
@@ -99,8 +97,6 @@ extension FeedViewController: FeedCellDelegate {
     
     func openImageUrl(in cell: FeedTableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
-            print("openImageUrl in", indexPath.row)
-
             let post = self.feedViewModel.getPost(at: indexPath.row)
             if let fullPictureUrl = post?.fullPictureUrl,
                let url = URL(string: fullPictureUrl) {
@@ -109,7 +105,12 @@ extension FeedViewController: FeedCellDelegate {
         }
 
     }
+}
 
+extension FeedViewController: FeedViewModelDelegate {
+    func newPostsAdded() {
+        self.updateTableView()
+    }
 }
 
 protocol FeedCellDelegate: class {

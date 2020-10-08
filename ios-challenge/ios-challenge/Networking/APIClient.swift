@@ -8,13 +8,18 @@
 import Foundation
 import UIKit
 
+struct PostsResult: Equatable {
+    let posts: [Post]
+    let afterValue: String
+}
+
 enum APIClientError: Error, Equatable {
     case missingData
     case unknown
 }
 
 protocol APIClient {
-    func performGETRequest(url: URL, completion: @escaping (Result<[Post]>) -> Void)
+    func performGETRequest(url: URL, completion: @escaping (Result<PostsResult>) -> Void)
     func performDownloadRequest(url: URL, completion: @escaping (Result<UIImage>) -> Void)
 }
 
@@ -28,7 +33,7 @@ class URLSessionAPIClient: APIClient {
         self.mapper = mapper
     }
     
-    func performGETRequest(url: URL, completion: @escaping (Result<[Post]>) -> Void) {
+    func performGETRequest(url: URL, completion: @escaping (Result<PostsResult>) -> Void) {
         session.loadData(from: url) { (data, _, error) in
             guard let data = data else {
                 completion(.failure(APIClientError.missingData))
@@ -42,6 +47,7 @@ class URLSessionAPIClient: APIClient {
             do {
                 if let convertedJsonIntoDict = try JSONSerialization.jsonObject(with: data, options: []) as? NSDictionary {
                     if let jsonData = convertedJsonIntoDict["data"] as? [String : Any],
+                       let afterValue = jsonData["after"] as? String,
                        let jsonArray = jsonData["children"] as? [[String : Any]] {
 
                         var posts = [Post]()
@@ -50,7 +56,7 @@ class URLSessionAPIClient: APIClient {
                                 posts.append(self.mapper.jsonToPost(json: postData))
                             }
                         }
-                        completion(.success(posts))
+                        completion(.success(PostsResult(posts: posts, afterValue: afterValue)))
                     }
                 }
             } catch {
