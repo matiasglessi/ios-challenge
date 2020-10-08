@@ -67,9 +67,11 @@ class URLSessionAPIClient: APIClient {
                 let mimeType = response?.mimeType, mimeType.hasPrefix("image"),
                 let data = data, error == nil,
                 let image = UIImage(data: data)
-                else { return }
+                else {
+                completion(.failure(APIClientError.unknown))
+                return
+            }
             
-            print(image)
             completion(.success(image))
         }
         
