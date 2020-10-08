@@ -46,7 +46,13 @@ class FeedViewModel {
         posts.remove(at: location)
     }
     
-    func removeAllPosts() {
+    func removeAllPosts() {
         posts.removeAll()
+    }
+    
+    func markAsRead(at index: Int) {
+        if isValidIndex(index: index) {
+            posts[index].status = .read
+        }
     }
 }

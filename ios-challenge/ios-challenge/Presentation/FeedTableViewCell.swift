@@ -16,9 +16,9 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     private var feedCellViewModel: FeedCellViewModel!
-    private var fullPictureUrl: String?
-    
         
+    weak var delegate: FeedCellDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.feedCellViewModel = FeedCellViewModel(apiClient: URLSessionAPIClient(mapper: PostMapper()))
@@ -27,7 +27,6 @@ class FeedTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.fullPictureUrl = nil
         self.thumbnailImageView.removeAllGestures()
     }
     
@@ -38,7 +37,7 @@ class FeedTableViewCell: UITableViewCell {
         self.titleLabel.text = post.title
         self.authorLabel.attributedText = getAuthorAndDateText(for: post)
         self.commentsLabel.text = "\(String(describing: post.comments)) comments"
-        self.fullPictureUrl = post.fullPictureUrl
+        self.readIndicatorView.isHidden = post.status == .read
         self.configurePostThumbnail(for: post.thumbnailUrl)
         self.addOpenUrlGestureRecognizer()
     }
@@ -65,13 +64,6 @@ class FeedTableViewCell: UITableViewCell {
         }
     }
     
-    @objc private func openThumbnailImage() {
-        if let fullPictureUrl = fullPictureUrl,
-           let url = URL(string: fullPictureUrl) {
-            UIApplication.shared.open(url)
-        }
-    }
-    
     
     private func getAuthorAndDateText(for post: Post) -> NSAttributedString {
         let date = post.getFormattedDate()
@@ -93,10 +85,18 @@ class FeedTableViewCell: UITableViewCell {
         return authorAndDateAttributedString
         
     }
-
+    
+    @IBAction func dismissPost(_ sender: Any) {
+        delegate?.dismissPost(in: self)
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        delegate?.markAsRead(in: self)
+    }
+    
+    @objc private func openThumbnailImage() {
+        delegate?.openImageUrl(in: self)
     }
 }
 

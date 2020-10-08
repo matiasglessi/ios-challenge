@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ReadStatus {
+enum ReadStatus: Equatable {
     case read
     case unread
 }
@@ -19,7 +19,7 @@ struct Post: Equatable {
     let thumbnailUrl: String
     let comments: Int
     let fullPictureUrl: String?
-    let status: ReadStatus
+    var status: ReadStatus
     
     func getFormattedDate() -> String {
         let formatter = RelativeDateTimeFormatter()

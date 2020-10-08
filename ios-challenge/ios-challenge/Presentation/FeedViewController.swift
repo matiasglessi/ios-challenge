@@ -61,6 +61,46 @@ class FeedViewController: UIViewController,
         let cell = tableView.dequeueReusableCell(withIdentifier: "FeedTableViewCell", for: indexPath) as! FeedTableViewCell
         let post = feedViewModel.getPost(at: indexPath.row)
         cell.configure(for: post)
+        cell.delegate = self
         return cell
     }
+}
+
+extension FeedViewController: FeedCellDelegate {
+    func dismissPost(in cell: FeedTableViewCell){
+        if let indexPath = tableView.indexPath(for: cell) {
+            print("dismissPost in", indexPath.row)
+
+            self.feedViewModel.removePost(at: indexPath.row)
+            self.deleteRows(at: [indexPath])
+        }
+    }
+
+    func markAsRead(in cell: FeedTableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            print("markAsRead in", indexPath.row)
+            self.feedViewModel.markAsRead(at: indexPath.row)
+            self.tableView.reloadRows(at: [indexPath], with: .automatic)
+        }
+    }
+    
+    func openImageUrl(in cell: FeedTableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            print("openImageUrl in", indexPath.row)
+
+            let post = self.feedViewModel.getPost(at: indexPath.row)
+            if let fullPictureUrl = post?.fullPictureUrl,
+               let url = URL(string: fullPictureUrl) {
+                UIApplication.shared.open(url)
+            }
+        }
+
+    }
+
+}
+
+protocol FeedCellDelegate: class {
+    func openImageUrl(in cell: FeedTableViewCell)
+    func dismissPost(in cell: FeedTableViewCell)
+    func markAsRead(in cell: FeedTableViewCell)
 }

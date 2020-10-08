@@ -15,10 +15,15 @@ class PostMother {
     let thumbnail: String = ""
     let comments: Int = 0
     let fullPictureUrl: String = ""
-    let status: ReadStatus = .unread
+    var status: ReadStatus = .unread
     
     
     func get() -> Post {
         return Post(title: title, author: author, date: date, thumbnailUrl: thumbnail, comments: comments, fullPictureUrl: fullPictureUrl, status: status)
+    }
+    
+    func withReadStatus(_ status: ReadStatus) -> PostMother {
+        self.status = status
+        return self
     }
 }
