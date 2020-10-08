@@ -8,25 +8,52 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Detail View Controller-->
         <scene sceneID="QjA-cZ-F5p">
             <objects>
-                <viewController id="CAA-6y-UPR" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CAA-6y-UPR" customClass="DetailViewController" customModule="ios_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ORA-SR-dc8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDK-yA-ndM">
+                                <rect key="frame" x="10" y="398" width="394" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dUa-iq-Ee4">
+                                <rect key="frame" x="82" y="108" width="250" height="250"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="Wgc-Xm-h9U"/>
+                                    <constraint firstAttribute="height" constant="250" id="h7J-Xe-rPT"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="a28-5t-Wc8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="dUa-iq-Ee4" firstAttribute="centerX" secondItem="ORA-SR-dc8" secondAttribute="centerX" id="0aO-47-cQg"/>
+                            <constraint firstItem="NDK-yA-ndM" firstAttribute="centerX" secondItem="ORA-SR-dc8" secondAttribute="centerX" id="2wg-Yu-LE2"/>
+                            <constraint firstItem="dUa-iq-Ee4" firstAttribute="top" secondItem="a28-5t-Wc8" secondAttribute="top" constant="20" id="U0d-B7-Uzb"/>
+                            <constraint firstItem="NDK-yA-ndM" firstAttribute="leading" secondItem="a28-5t-Wc8" secondAttribute="leading" constant="10" id="Z6M-sh-Rki"/>
+                            <constraint firstItem="NDK-yA-ndM" firstAttribute="top" secondItem="dUa-iq-Ee4" secondAttribute="bottom" constant="40" id="h3M-Hx-Dw1"/>
+                            <constraint firstItem="a28-5t-Wc8" firstAttribute="trailing" secondItem="NDK-yA-ndM" secondAttribute="trailing" constant="10" id="rZ5-cq-uJ6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="postDescriptionLabel" destination="NDK-yA-ndM" id="Got-k7-dtL"/>
+                        <outlet property="postImageView" destination="dUa-iq-Ee4" id="6sB-VC-Cip"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ey5-bk-gpL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="258" y="563"/>
+            <point key="canvasLocation" x="258" y="583"/>
         </scene>
         <!--Reddit Posts-->
         <scene sceneID="s7m-y9-Gmf">
             <objects>
-                <viewController id="v1X-mh-srx" customClass="FeedViewController" customModule="ios_challenge" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FeedViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="v1X-mh-srx" customClass="FeedViewController" customModule="ios_challenge" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="s1J-vj-j20">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
