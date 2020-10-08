@@ -35,7 +35,24 @@ class FeedViewController: UIViewController,
             self.tableView.reloadData()
         }
     }
-
+    
+    @IBAction func dismissAll(_ sender: Any) {
+        let postCount = feedViewModel.getPostsCount()
+        feedViewModel.removeAllPosts()
+        let indexes = getAllIndexes(with: postCount)
+        deleteRows(at: indexes)
+    }
+    
+    private func getAllIndexes(with count: Int) -> [IndexPath] {
+        return (0..<count).compactMap { value in
+            return IndexPath(item: value, section: 0)
+        }
+    }
+    
+    private func deleteRows(at indexes: [IndexPath]) {
+        tableView.deleteRows(at: indexes, with: .automatic)
+    }
+        
     func tableView(_ tableView: UITableView,numberOfRowsInSection section: Int) -> Int {
         return feedViewModel.getPostsCount()
     }

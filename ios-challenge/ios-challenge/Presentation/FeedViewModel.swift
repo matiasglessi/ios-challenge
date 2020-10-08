@@ -41,4 +41,12 @@ class FeedViewModel {
     private func isValidIndex(index: Int) -> Bool {
         return posts.count > index
     }
+    
+    func removePost(at location: Int) {
+        posts.remove(at: location)
+    }
+    
+    func removeAllPosts() {
+        posts.removeAll()
+    }
 }
