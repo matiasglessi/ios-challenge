@@ -18,9 +18,10 @@ class PostMapper: Mapper {
         let author = getString(from: json["author"])
         let date = getDate(from: json["created"])
         let thumbnail = getString(from: json["thumbnail"])
+        let fullPictureUrl = getString(from: json["url_overridden_by_dest"])
         let comments = getInt(from: json["num_comments"])
         
-        return Post(title: title, author: author, date: date, thumbnail: thumbnail, comments: comments, status: .unread)
+        return Post(title: title, author: author, date: date, thumbnailUrl: thumbnail, comments: comments, fullPictureUrl: fullPictureUrl, status: .unread)
         
     }
     

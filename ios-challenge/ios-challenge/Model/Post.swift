@@ -16,8 +16,9 @@ struct Post: Equatable {
     let title: String
     let author: String
     let date: Date
-    let thumbnail: String
+    let thumbnailUrl: String
     let comments: Int
+    let fullPictureUrl: String?
     let status: ReadStatus
     
     func getFormattedDate() -> String {

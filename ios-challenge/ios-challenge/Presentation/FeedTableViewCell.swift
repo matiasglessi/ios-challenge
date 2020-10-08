@@ -16,8 +16,7 @@ class FeedTableViewCell: UITableViewCell {
     @IBOutlet weak var thumbnailImageView: UIImageView!
     
     private var feedCellViewModel: FeedCellViewModel!
-    private var thumbnailUrl: String = ""
-    private var tapToOpenUrlGesture = UITapGestureRecognizer(target: self, action: #selector(openThumbnailImage))
+    private var fullPictureUrl: String?
     
         
     override func awakeFromNib() {
@@ -28,7 +27,7 @@ class FeedTableViewCell: UITableViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-        self.thumbnailUrl = ""
+        self.fullPictureUrl = nil
         self.thumbnailImageView.removeAllGestures()
     }
     
@@ -39,15 +38,17 @@ class FeedTableViewCell: UITableViewCell {
         self.titleLabel.text = post.title
         self.authorLabel.attributedText = getAuthorAndDateText(for: post)
         self.commentsLabel.text = "\(String(describing: post.comments)) comments"
-        self.configurePostThumbnail(for: post.thumbnail)
-        let tapToOpenUrlGesture = UITapGestureRecognizer(target: self, action: #selector(openThumbnailImage));
-        thumbnailImageView.addGestureRecognizer(tapToOpenUrlGesture)
-        thumbnailImageView.isUserInteractionEnabled = true
+        self.fullPictureUrl = post.fullPictureUrl
+        self.configurePostThumbnail(for: post.thumbnailUrl)
+        self.addOpenUrlGestureRecognizer()
     }
     
+    private func addOpenUrlGestureRecognizer() {
+        let tapToOpenUrlGesture = UITapGestureRecognizer(target: self, action: #selector(openThumbnailImage));
+        thumbnailImageView.addGestureRecognizer(tapToOpenUrlGesture)
+    }
     
     private func configurePostThumbnail(for thumbnail: String) {
-        thumbnailUrl = thumbnail
         feedCellViewModel.getThumbnail(with: thumbnail) { [weak self] (result) in
             self?.updateThumbnailWith(result: result)
         }
@@ -65,7 +66,8 @@ class FeedTableViewCell: UITableViewCell {
     }
     
     @objc private func openThumbnailImage() {
-        if let url = URL(string: thumbnailUrl) {
+        if let fullPictureUrl = fullPictureUrl,
+           let url = URL(string: fullPictureUrl) {
             UIApplication.shared.open(url)
         }
     }

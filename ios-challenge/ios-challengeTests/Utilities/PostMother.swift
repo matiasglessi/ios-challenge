@@ -14,10 +14,11 @@ class PostMother {
     let date: Date = Date()
     let thumbnail: String = ""
     let comments: Int = 0
+    let fullPictureUrl: String = ""
     let status: ReadStatus = .unread
     
     
     func get() -> Post {
-        return Post(title: title, author: author, date: date, thumbnail: thumbnail, comments: comments, status: status)
+        return Post(title: title, author: author, date: date, thumbnailUrl: thumbnail, comments: comments, fullPictureUrl: fullPictureUrl, status: status)
     }
 }
