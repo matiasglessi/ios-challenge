@@ -81,8 +81,8 @@ class FeedViewModel {
                 self?.after = postResult.afterValue
                 self?.currentPage += 1
                 self?.delegate?.newPostsAdded()
-            case .failure(let error):
-                print(error)
+            default:
+                break
             }
         }
     }
